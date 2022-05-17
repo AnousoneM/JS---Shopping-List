@@ -16,13 +16,13 @@ if (localStorage.getItem('monTableau')) {
 
 // AU CHARGEMENT DE LA PAGE, j'effectue une boucle pour afficher mes produits présents dans mon tableaudu localStorage
 
-// Nous allons créer un index qui démarre à 0
+// Nous allons créer un index qui démarre à 0 et nous allons nous en servir tout au long de l'algo
 let index = 0
 
 monTableau.forEach(produit => {
     maListe.innerHTML += `
         <div id="produit-${index}"class="h3 ps-3 pe-1 border border-dark rounded d-flex justify-content-between">
-            <span>${produit}</span><i class="bi bi-x-square-fill" onclick="effacer('produit-${index}')"></i>
+            <span id="name-produit-${index}">${produit}</span><i class="bi bi-x-square-fill" onclick="effacer('produit-${index}')"></i>
         </div>    
     `
     // Je pense à incrémenter ma variable
@@ -35,17 +35,18 @@ function effacer(produitId) {
     // 1- je récupère l'id du produit à l'aide du paramètre de fonction
     let elementAEffacer = document.getElementById(produitId)
 
-    // j'efface le produit à l'aide de la fonction remove()
-    elementAEffacer.remove()
+    // 2- je recupère l'index du produit à l'aide de le fonction indexOf et de l'id du produit à rechercher + innerText
+    let nomProduit = document.getElementById(`name-${produitId}`)
+    let indexInMonTableau = monTableau.indexOf(nomProduit.innerText)
 
-    // je recupère l'index du produit 
-    let test = produitId.split('-')
+    // 3- j'efface l'élément du tableau monTableau à l'aide de splice et de l'index
+    monTableau.splice(indexInMonTableau, 1)
 
-    // j'efface l'élément du tableau monTableau
-    monTableau.splice(test,1)
-
-    // je sauvegarde monTableau dans mon localStorage
+    // 4- je sauvegarde monTableau dans mon localStorage
     localStorage.setItem('monTableau', monTableau)
+
+    // 5- j'efface le produit à l'aide de la fonction remove()
+    elementAEffacer.remove()
 }
 
 function sauvegarder() {
@@ -62,7 +63,7 @@ function sauvegarder() {
         // 3- j'écris du html dans l'élément avec l'id maListe avec la valeur du produit
         maListe.innerHTML += `
         <div id="produit-${index}" class="h3 ps-3 pe-1 border border-dark rounded d-flex justify-content-between">
-            <span>${produitValue}</span><i class="bi bi-x-square-fill" onclick="effacer('produit-${index}')"></i>
+            <span id="name-produit-${index}">${produitValue}</span><i class="bi bi-x-square-fill" onclick="effacer('produit-${index}')"></i>
         </div>    
         `
 
