@@ -8,29 +8,38 @@
     <title>JS - Exo Shopping Liste</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
 
 </head>
 
-<body class="bg-secondary">
+<body class="bg-light">
 
-    <h1 class="text-center mt-3">Ma "Shopping" Liste</h1>
+    <div class="row justify-content-center pt-5">
 
-    <div class="row justify-content-center">
+        <div class="col-lg-4 col-11 p-4 order border-primary bg-light shadow shadow-lg">
 
-        <div class="col-4 border border-warning">
+            <h1 class="text-center mt-3">Ma "Shopping" Liste</h1>
+
             <div class="align-middle border border-white text-center">
-                <input id="monProduit" class="d-table-cell align-middle mx-2 border border-dark" type="text"><button
-                    class="btn btn-dark">Sauvegarder</button>
+                <input id="monProduit" class="d-table-cell align-middle mx-2 border border-dark" type="text">
+                <button class="btn btn-dark" onclick="sauvegarder()">Sauvegarder</button>
             </div>
             <hr>
-            <div id="maListe">
-                <p class="text-center">Rien à acheter :'(</p>
+            <div id="maListe" class="row text-center">
+
+                <!-- structure à boucler -->
+                <!-- <div class="h3 ps-3 pe-1 border border-dark rounded d-flex justify-content-between">
+                    <span>Banane</span><i class="bi bi-x-square-fill" onclick="effacer()"></i>
+                </div> -->
+                
+
+
             </div>
         </div>
 
     </div>
 
-<script src="public/script/script.js"></script>
+    <script src="public/script/script.js"></script>
 </body>
 
 </html>
